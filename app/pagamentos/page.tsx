@@ -8,9 +8,9 @@ import {
     ChevronLeft,
     ChevronRight,
     MoreVertical,
-    CreditCard,
-    QrCode,
-    FileText,
+    Banknote,
+    Smartphone,
+    Wallet,
     Eye
 } from 'lucide-react';
 import Link from 'next/link';
@@ -20,23 +20,23 @@ import { motion } from 'motion/react';
 import { cn } from '@/lib/utils';
 
 const sales = [
-    { id: '#BP-88219', date: '12 Mai, 14:30', customer: 'Ricardo Lemos', product: 'Curso de Finanças Pro', method: 'Cartão', status: 'Pago', value: '499,90 MT', initial: 'RL' },
-    { id: '#BP-88218', date: '12 Mai, 13:15', customer: 'Mariana Silva', product: 'Ebook Marketing Digital', method: 'Pix', status: 'Pendente', value: '97,00 MT', initial: 'MS' },
-    { id: '#BP-88215', date: '11 Mai, 18:45', customer: 'João Carlos', product: 'Mentoria Individual', method: 'Boleto', status: 'Cancelado', value: '1.200,00 MT', initial: 'JC' },
-    { id: '#BP-88210', date: '11 Mai, 10:20', customer: 'Ana Almeida', product: 'Pack de Presets Pro', method: 'Pix', status: 'Pago', value: '149,00 MT', initial: 'AA' },
-    { id: '#BP-88209', date: '10 Mai, 22:50', customer: 'Paulo Vieira', product: 'Acesso Comunidade VIP', method: 'Cartão', status: 'Pago', value: '29,90 MT', initial: 'PV' },
+    { id: '#BP-88219', date: '12 Mai, 14:30', customer: 'Ricardo Lemos', product: 'Smartwatch X Pro', method: 'Dinheiro (COD)', status: 'Entregue', value: '499,90 MT', initial: 'RL' },
+    { id: '#BP-88218', date: '12 Mai, 13:15', customer: 'Mariana Silva', product: 'Kit Maquiagem Premium', method: 'M-Pesa', status: 'Em Trânsito', value: '1.097,00 MT', initial: 'MS' },
+    { id: '#BP-88215', date: '11 Mai, 18:45', customer: 'João Carlos', product: 'Fone de Ouvido Bluetooth', method: 'e-Mola', status: 'Devolvido', value: '1.200,00 MT', initial: 'JC' },
+    { id: '#BP-88210', date: '11 Mai, 10:20', customer: 'Ana Almeida', product: 'Luminária LED', method: 'M-Pesa', status: 'Entregue', value: '149,00 MT', initial: 'AA' },
+    { id: '#BP-88209', date: '10 Mai, 22:50', customer: 'Paulo Vieira', product: 'Tênis Esportivo Max', method: 'Dinheiro (COD)', status: 'Entregue', value: '2.529,90 MT', initial: 'PV' },
 ];
 
 const statusStyles = {
-    'Pago': 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400',
-    'Pendente': 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
-    'Cancelado': 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400',
+    'Entregue': 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400',
+    'Em Trânsito': 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-400',
+    'Devolvido': 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-400',
 };
 
 const methodIcons = {
-    'Cartão': CreditCard,
-    'Pix': QrCode,
-    'Boleto': FileText,
+    'Dinheiro (COD)': Banknote,
+    'M-Pesa': Wallet,
+    'e-Mola': Smartphone,
 };
 
 export default function PagamentosPage() {
@@ -58,8 +58,8 @@ export default function PagamentosPage() {
                 <main className="p-4 sm:p-6 md:p-8 space-y-6 md:space-y-8 max-w-7xl mx-auto w-full">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <div>
-                            <h1 className="text-3xl font-black tracking-tight">Pagamentos</h1>
-                            <p className="text-slate-500 font-medium mt-1">Gerencie e acompanhe todos os pagamentos e relatórios.</p>
+                            <h1 className="text-3xl font-black tracking-tight">Relatório de Transações</h1>
+                            <p className="text-slate-500 font-medium mt-1">Acompanhe todos os pedidos e entregas Cash on Delivery (COD).</p>
                         </div>
                         <button
                             onClick={handleExport}
@@ -100,15 +100,15 @@ export default function PagamentosPage() {
                             </select>
                             <select className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm px-4 py-2.5 focus:ring-2 focus:ring-[#137fec] transition-all font-semibold">
                                 <option>Todos Status</option>
-                                <option>Pago</option>
-                                <option>Pendente</option>
-                                <option>Cancelado</option>
+                                <option>Entregue</option>
+                                <option>Em Trânsito</option>
+                                <option>Devolvido</option>
                             </select>
                             <select className="bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm px-4 py-2.5 focus:ring-2 focus:ring-[#137fec] transition-all font-semibold">
                                 <option>Todos Métodos</option>
-                                <option>Cartão</option>
-                                <option>Pix</option>
-                                <option>Boleto</option>
+                                <option>Dinheiro (COD)</option>
+                                <option>M-Pesa</option>
+                                <option>e-Mola</option>
                             </select>
                         </div>
                     </div>

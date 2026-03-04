@@ -19,7 +19,7 @@ type Sale = {
     client: string;
     value: number;
     commission: number;
-    status: 'Concluída' | 'Pendente';
+    status: 'Entregue' | 'Pendente';
     date: string;
 };
 
@@ -47,16 +47,16 @@ type Sale = {
 const mockSales: Sale[] = [
     {
         id: 'VND-001',
-        product: 'Curso Especialista em Vendas',
+        product: 'Smartwatch X Pro',
         client: 'João Silva',
         value: 5000,
         commission: 2500,
-        status: 'Concluída',
+        status: 'Entregue',
         date: '04 Mar 2026',
     },
     {
         id: 'VND-002',
-        product: 'Mentoria VIP',
+        product: 'Fone de Ouvido Bluetooth',
         client: 'Maria Oliveira',
         value: 12000,
         commission: 6000,
@@ -65,11 +65,11 @@ const mockSales: Sale[] = [
     },
     {
         id: 'VND-003',
-        product: 'E-book Dominando o Mercado',
+        product: 'Tênis Esportivo Max',
         client: 'Carlos Andrade',
         value: 1500,
         commission: 750,
-        status: 'Concluída',
+        status: 'Entregue',
         date: '05 Mar 2026',
     }
 ];
@@ -93,11 +93,11 @@ export default function MinhasVendas() {
     }, []);
 
     // Cálculos Automáticos
-    const completedSalesCount = sales.filter(s => s.status === 'Concluída').length;
+    const completedSalesCount = sales.filter(s => s.status === 'Entregue').length;
     const pendingSalesCount = sales.filter(s => s.status === 'Pendente').length;
     const totalCommissions = sales.reduce((acc, current) => acc + current.commission, 0);
     const releasedCommissions = sales
-        .filter(s => s.status === 'Concluída')
+        .filter(s => s.status === 'Entregue')
         .reduce((acc, current) => acc + current.commission, 0);
 
     // Formatação em Metical (MT)
@@ -120,14 +120,14 @@ export default function MinhasVendas() {
                     <div>
                         <h1 className="text-3xl font-black tracking-tight text-slate-900 dark:text-white">Minhas Vendas</h1>
                         <p className="text-slate-500 font-medium mt-1">
-                            Acompanhe suas vendas concluídas e comissões
+                            Acompanhe suas vendas entregues e comissões
                         </p>
                     </div>
 
                     {/* Cards de Estatísticas */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
 
-                        {/* Card 1: Vendas Concluídas */}
+                        {/* Card 1: Vendas Entregues */}
                         <motion.div
                             initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
                             className="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col gap-4"
@@ -139,7 +139,7 @@ export default function MinhasVendas() {
                                 <h3 className="text-3xl font-black text-slate-800 dark:text-white">
                                     {isLoading ? '-' : completedSalesCount}
                                 </h3>
-                                <p className="text-sm font-semibold text-slate-500 mt-1">Vendas Concluídas</p>
+                                <p className="text-sm font-semibold text-slate-500 mt-1">Vendas Entregues</p>
                             </div>
                         </motion.div>
 
@@ -207,10 +207,10 @@ export default function MinhasVendas() {
                                 <ShoppingCart className="text-slate-300 dark:text-slate-600" size={48} />
                             </div>
                             <h2 className="text-2xl font-black text-slate-800 dark:text-white mb-2">
-                                Nenhuma venda concluída ainda
+                                Nenhuma venda entregue ainda
                             </h2>
                             <p className="text-slate-500 font-medium max-w-sm">
-                                Suas vendas entregues aparecerão aqui
+                                Suas vendas entregues com sucesso aparecerão aqui
                             </p>
                         </motion.div>
                     ) : (
@@ -252,7 +252,7 @@ export default function MinhasVendas() {
                                                     <span className="text-sm font-bold text-[#137fec]">{formatCurrency(sale.commission)}</span>
                                                 </td>
                                                 <td className="px-6 py-5">
-                                                    {sale.status === 'Concluída' ? (
+                                                    {sale.status === 'Entregue' ? (
                                                         <span className="inline-flex items-center px-2.5 py-1 rounded-full text-[10px] font-black uppercase tracking-wider bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-400">
                                                             {sale.status}
                                                         </span>
